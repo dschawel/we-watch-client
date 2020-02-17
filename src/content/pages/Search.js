@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 
 const Search = props => {
 
-    let [q, setQ] = useState('')
+    let [query, setQuery] = useState('')
     
     const handleSubmit = e => {
         e.preventDefault()
-        let data = {
-            q
+        let q = {
+            query
         }
-        fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
+        fetch(process.env.REACT_APP_SERVER_URL + '/shows', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(q),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -31,7 +31,7 @@ const Search = props => {
             <h2>Search</h2>
             <form onSubmit={handleSubmit} />
                 <label>Show: </label>
-                <input type="text" name="q" onChange={e => setQ(e.target.value)} />
+                <input type="text" name="query" onChange={e => setQuery(e.target.value)} />
                 <button type="submit">Submit</button>
             <form />
         </div>
