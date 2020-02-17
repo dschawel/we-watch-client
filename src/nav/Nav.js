@@ -31,6 +31,9 @@ const Nav = props => {
         <Link to="/profile">Profile</Link>
       </li>
       <li>
+        <Link to="/search">Search</Link>
+      </li>
+      <li>
         <Link to="/" onClick={handleLogout}>Logout</Link>
       </li>
     </span>
