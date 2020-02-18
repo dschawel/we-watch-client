@@ -1,31 +1,42 @@
 import React, { useState } from 'react'
 
-const Search = props => {
+const Search = () => {
   // Declare and initialize state variables
     let [query, setQuery] = useState('')
-    
+    let [movieList, setMovieList] = useState([])
+
+    console.log(query)
     const handleSubmit = e => {
         e.preventDefault()
         let token = localStorage.getItem('userToken')
-        // let q = {
-        //     query
-        // }
-        fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${query}`, {
             method: 'GET',
-            // body: JSON.stringify(q),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-            // .then(response => response.json())
-            // .then(result => {
-            //     // Reset the state
-            //     setQuery('')
-            //     console.log(result)
-            // })
-            // .catch(err => {
-            //     console.log('Error Posting', err)
-            // })
+        })
+            .then(response => response.json())
+                .then(result => {
+                    // Reset the state
+                    console.log('I am the result:', result.Search)
+                    setMovieList(result.Search)
+                    console.log('I am the list:', movieList)
+                })
+                .catch(err => {
+                    console.log('Error Getting', err)
+                })
+        console.log('List:', movieList)
+    }
+    let list;
+    if(movieList){
+        list = movieList.map((movie, i) => {
+            if (movieList.movie)
+            return(
+                <div key={i}>
+                    <p>{movie.title}</p>
+                </div>
+            )
         })
     }
 
@@ -41,6 +52,7 @@ const Search = props => {
                     <button type="submit">Submit</button>
                 </div>
             </form>
+            {list}
         </div>
     )
 }
