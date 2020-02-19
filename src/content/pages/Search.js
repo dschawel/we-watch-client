@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import ReactCardCarousel from 'react-card-carousel';
-import Button from '../pages/Button'
+// import Button from '../pages/Button'
 
 const Search = () => {
   // Declare and initialize state variables
     let [query, setQuery] = useState('')
     let [movieList, setMovieList] = useState([])
+    let [movie, setMovie] = useState('')
 
     console.log(query)
     const handleSubmit = e => {
@@ -31,6 +32,28 @@ const Search = () => {
                 })
         console.log('List:', movieList)
     }
+
+    const addToQueue = e => {
+        e.preventDefault()
+        let token = localStorage.getItem('userToken')
+        fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+                .then(result => {
+                    setMovie(movie)
+                    console.log('Posting show to user?')
+                    console.log(result)
+                })
+            .catch(err => {
+                console.log('line 19 error', err)
+            })
+    }
+
     let list;
     if(movieList){
         list = movieList.map((movie, i) => {
@@ -44,7 +67,7 @@ const Search = () => {
                 <div className='movie' key={i} style={CARD_STYLE}>
                     <p className='movieTitle'>{movie.Title}</p>
                     <p>{movie.Year}</p>
-                    <Button />
+                    <button type="submit" onClick={addToQueue} >Add to Queue</button>
                 </div>
             )
         })
