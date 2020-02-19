@@ -97,18 +97,3 @@ const Search = () => {
 }
 
 export default Search
-
-// static get CARD_STYLE() {
-//     return {
-//     height: '200px',
-//     width: '200px',
-//     paddingTop: '80px',
-//     textAlign: 'center',
-//     background: '#52C0F5',
-//     color: '#FFF',
-//     fontSize: '12px',
-//     textTransform: 'uppercase',
-//     borderRadius: '10px',
-//     };
-// }
-
