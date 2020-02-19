@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 const Profile = props => {
   // Declare and initalize state
   let [serverMessage, setServerMessage] = useState('')
+  let [search, setSearch] = useState('')
 
   const callServer = () => {
     let token = localStorage.getItem('userToken')
@@ -33,6 +34,12 @@ const Profile = props => {
     })
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+
+  }
+
+
   // If there is not a user, send them away
   if (!props.user) {
     return <Redirect to="/" />
@@ -47,8 +54,15 @@ const Profile = props => {
         <strong>Email:</strong>
         {props.user.email}
       </p>
-      <button onClick={callServer}>Call /profile route on server</button>
-      <p>{serverMessage}</p>
+      <h2>Search for Friends</h2>
+      <div className='friends'>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="search" placeholder="search for friends" onChange={e => setSearch(e.target.value)} />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      {/* <button onClick={callServer}>Call /profile route on server</button>
+      <p>{serverMessage}</p> */}
     </div>
   )
 }

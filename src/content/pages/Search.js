@@ -21,6 +21,7 @@ const Search = () => {
                     // Reset the state
                     console.log('I am the result:', result.Search)
                     setMovieList(result.Search)
+                    
                     console.log('I am the list:', movieList)
                 })
                 .catch(err => {
