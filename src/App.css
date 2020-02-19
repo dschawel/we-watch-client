@@ -47,3 +47,29 @@ nav a:hover {
 }
 
 
+.movie{
+  height: 50vh;
+  width: 20vw;
+  padding-top: 80px;
+  text-align: center;
+  background: pink;
+  color: #FFF;
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.cardContainer{
+  top: 28vh;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  align-items: middle;
+}
+
+.movieTitle{
+  background-color: rgba(0,0,0,0.7)
+}
