@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import Search from './pages/Search'
+import Button from './pages/Button'
 
 const Content = props => {
   return (
@@ -20,7 +21,7 @@ const Content = props => {
         () => <Profile user={props.user} />
       } />
       <Route path="/search" render={
-        () => <Search user={props.user} />
+        () => <Search user={props.user} component={Button} />
       } />
       <Route path="/signup" render={
         () => <Signup user={props.user} updateUser={props.updateUser} />

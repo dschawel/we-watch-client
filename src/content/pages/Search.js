@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactCardCarousel from 'react-card-carousel';
+import Button from '../pages/Button'
 
 const Search = () => {
   // Declare and initialize state variables
@@ -15,8 +16,8 @@ const Search = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            }
-        })
+                }
+            })
             .then(response => response.json())
                 .then(result => {
                     // Reset the state
@@ -43,6 +44,7 @@ const Search = () => {
                 <div className='movie' key={i} style={CARD_STYLE}>
                     <p className='movieTitle'>{movie.Title}</p>
                     <p>{movie.Year}</p>
+                    <Button />
                 </div>
             )
         })
