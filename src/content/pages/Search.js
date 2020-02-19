@@ -45,9 +45,9 @@ const Search = () => {
             })
             .then(response => response.json())
                 .then(result => {
-                    setMovie(movie)
+                    // setMovie(movie)
                     console.log('Posting show to user?')
-                    console.log(result)
+                    console.log('Added to movie queue', movie)
                 })
             .catch(err => {
                 console.log('line 19 error', err)
@@ -67,7 +67,7 @@ const Search = () => {
                 <div className='movie' key={i} style={CARD_STYLE}>
                     <p className='movieTitle'>{movie.Title}</p>
                     <p>{movie.Year}</p>
-                    <button type="submit" onClick={addToQueue} >Add to Queue</button>
+                    <button type="submit" onClick={addToQueue} onChange={e => setMovie(e.target.value)}>Add to Queue</button>
                 </div>
             )
         })
