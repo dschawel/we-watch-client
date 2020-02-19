@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactCardCarousel from 'react-card-carousel';
 
 const Search = () => {
   // Declare and initialize state variables
@@ -31,10 +32,16 @@ const Search = () => {
     let list;
     if(movieList){
         list = movieList.map((movie, i) => {
-            if (movieList.movie)
+            const CARD_STYLE = {
+                'backgroundImage': 'url(' + movie.Poster + ')',
+                'backgroundSize': 'cover',
+                'backgroundPosition': 'center'
+                };
+            console.log(movie)
             return(
-                <div key={i}>
-                    <p>{movie.title}</p>
+                <div className='movie' key={i} style={CARD_STYLE}>
+                    <p className='movieTitle'>{movie.Title}</p>
+                    <p>{movie.Year}</p>
                 </div>
             )
         })
@@ -52,10 +59,30 @@ const Search = () => {
                     <button type="submit">Submit</button>
                 </div>
             </form>
-            {list}
+            <div className="displayMovies">
+            <div className="cardContainer">
+                <ReactCardCarousel autoplay={ true } autoplay_speed={ 15000 }>
+                    {list}
+                </ReactCardCarousel>
+            </div>
+            </div>
         </div>
     )
 }
 
 export default Search
+
+// static get CARD_STYLE() {
+//     return {
+//     height: '200px',
+//     width: '200px',
+//     paddingTop: '80px',
+//     textAlign: 'center',
+//     background: '#52C0F5',
+//     color: '#FFF',
+//     fontSize: '12px',
+//     textTransform: 'uppercase',
+//     borderRadius: '10px',
+//     };
+// }
 
