@@ -5,7 +5,7 @@ const Profile = props => {
   // Declare and initalize state
   let [serverMessage, setServerMessage] = useState('')
   let [search, setSearch] = useState('')
-
+  let [friendName, setFriendName] = useState('')
   // const callServer = () => {
   //   console.log(search)
   //   let token = localStorage.getItem('userToken')
@@ -39,10 +39,11 @@ const Profile = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(search)
+    console.log(friendName)
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/friends/search`, {
       method: 'POST',
+      body: JSON.stringify({friendName}),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -78,7 +79,7 @@ const Profile = props => {
       <h2>Search for Friends</h2>
       <div className='friends'>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="search" placeholder="search for friends" onChange={e => setSearch(e.target.value)} />
+          <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
           <button type="submit">Submit</button>
         </form>
       </div>
