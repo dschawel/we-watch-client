@@ -9,14 +9,15 @@ const Profile = props => {
   // let [search, setSearch] = useState('')
   let [friendName, setFriendName] = useState('')
   let [shows, setShows] = useState('')
+  let [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     fetchShows()
-  }, [])
+  }, [shows])
 
-  const fetchShows = async () => {
+  const fetchShows = () => {
     let token = localStorage.getItem('userToken')
-    await fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -35,13 +36,16 @@ const Profile = props => {
 
   // Function to delete from your queue
   const handleDelete = e => {
-    // console.log('Line 38', e.target.value)
     e.preventDefault()
-    // showId = match.params.id
+    shows.forEach(show => {
+      if (show._id === e.target.value) {
+        setShows(shows.splice(show, 1))
+      }
+    })
+    console.log(e.target.value)
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${e.target.value}`, {
       method: 'DELETE',
-      // body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -49,14 +53,16 @@ const Profile = props => {
     })
     .then(response => {
       response.json().then(result => {
-        console.log(result)
+        // setRedirect(true)
+        console.log('Line 51', result)
       })
       .catch(err => {
         console.log('Error in deleting show', err)
       })
     })
   }
-
+    
+  // Conditional rendering of movie cards
   let content;
   if (shows.length > 0) {
     content = shows.map((show, i) => {
@@ -132,7 +138,7 @@ const Profile = props => {
               <h3>Search for Friends</h3>
               <form onSubmit={handleSubmit}>
                 <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
-                <button type="submit" class="submit">Submit</button>
+                <button type="submit" className="submit">Submit</button>
               </form>
             </div>
           </Col>
