@@ -101,11 +101,4 @@ const Search = () => {
     )
 }
 
-<<<<<<< HEAD
 export default Search
-
-
-
-=======
-export default Search
->>>>>>> 1e894257fd725cece295ab39e2504290b8e1ffba
