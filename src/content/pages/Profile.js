@@ -34,9 +34,11 @@ const Profile = props => {
   }
 
   const handleDelete = e => {
+    console.log(e)
     e.preventDefault()
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/shows/:showId`, {
+      method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -66,11 +68,11 @@ const Profile = props => {
                 <div className="movie-info">
                     {/* <h3>Movie Details</h3> */}
                     <div>
-                        <h2>{show.title}</h2>
+                        <h3>{show.title}</h3>
                         <small>Released Date: {show.year}</small>
                     </div>
-                    <h3>{show.type}</h3>
-                  <button key={i} type="submit" className="delete" onClick={handleDelete}>Remove From Queue</button>
+                    <small><strong>{show.type}</strong></small>
+                  <button key={i} className="delete" onClick={handleDelete}>Remove From Queue</button>
                 </div>
             </div>
       )
