@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
-// import FriendList from '../components/friendList'
 
 const Profile = props => {
   let [friendName, setFriendName] = useState('')
@@ -108,7 +107,7 @@ const Profile = props => {
         })
       })
       .catch(err => {
-        console.log('line 32 error', err)
+        console.log('Error on search submittal', err)
       })
     }
 
@@ -147,12 +146,10 @@ let friendList;
   friendList = friendArr.map((friend, i) => {
     return(
       <div key={i} className="friend">
-        <h4>{friend.firstname}</h4>
+        <Link to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
       </div>
     )
   })
-  console.log('THIS IS THE LIST: ', friendList)
-  console.log('HEY! FRIENDARR', friendArr)
   return (
     <div className="profile">
       <Container>

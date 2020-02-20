@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import Search from './pages/Search'
+import FriendProfile from './pages/FriendProfile'
 
 // import Button from './pages/Button'
 
@@ -26,6 +27,9 @@ const Content = props => {
       } />
       <Route path="/signup" render={
         () => <Signup user={props.user} updateUser={props.updateUser} />
+      } />
+      <Route path="/friend/:id" render={
+        () => <FriendProfile user={props.user} component={ Profile } />
       } />
     </div>
   )
