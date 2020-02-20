@@ -28,7 +28,26 @@ const Profile = props => {
         setShows(result)
       })
       .catch(err => {
-        console.log('Error in pet fetch', err)
+        console.log('Error in show fetch', err)
+      })
+    })
+  }
+
+  const handleDelete = e => {
+    e.preventDefault()
+    let token = localStorage.getItem('userToken')
+    fetch(`${process.env.REACT_APP_SERVER_URL}/shows/:showId`, {
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      response.json().then(result => {
+        console.log(result)
+      })
+      .catch(err => {
+        console.log('Error in deleting show', err)
       })
     })
   }
@@ -37,7 +56,7 @@ const Profile = props => {
   if (shows.length > 0) {
     content = shows.map((show, i) => {
       return (
-        <div className="movie-card-container">
+        <div key={i} className="movie-card-container">
                 <div className="image-container">
                     <div
                         className="bg-image"
@@ -51,6 +70,7 @@ const Profile = props => {
                         <small>Released Date: {show.year}</small>
                     </div>
                     <h3>{show.type}</h3>
+                  <button key={i} type="submit" className="delete" onClick={handleDelete}>Remove From Queue</button>
                 </div>
             </div>
       )
@@ -102,8 +122,7 @@ const Profile = props => {
               {props.user.email}
             </p> */}
             <br />
-            <br />
-            <br />
+            <hr />
             <div className="friends">
               <h3>Search for Friends</h3>
               <form onSubmit={handleSubmit}>

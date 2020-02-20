@@ -136,3 +136,8 @@ nav a:hover {
   border: 2px solid black;
   border-radius: 10px;
 }
+
+/* .delete {
+  bottom: 0;
+  position: fixed;
+} */
