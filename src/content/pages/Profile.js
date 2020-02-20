@@ -16,9 +16,10 @@ const Profile = props => {
     getFriends(props)
   }, [])
 
-  const fetchShows = async () => {
+
+  const fetchShows = () => {
     let token = localStorage.getItem('userToken')
-    await fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -34,11 +35,14 @@ const Profile = props => {
     })
   }
 
+  // Function to delete from your queue
   const handleDelete = e => {
-    console.log(e)
     e.preventDefault()
+    
+    setShows(shows.filter(show => show._id !== e.target.value))
+    console.log(e.target.value)
     let token = localStorage.getItem('userToken')
-    fetch(`${process.env.REACT_APP_SERVER_URL}/shows/:showId`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${e.target.value}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
@@ -47,14 +51,15 @@ const Profile = props => {
     })
     .then(response => {
       response.json().then(result => {
-        console.log(result)
+        console.log('Line 51', result)
       })
       .catch(err => {
         console.log('Error in deleting show', err)
       })
     })
   }
-
+    
+  // Conditional rendering of movie cards
   let content;
   if (shows.length > 0) {
     content = shows.map((show, i) => {
@@ -73,7 +78,7 @@ const Profile = props => {
                         <small>Released Date: {show.year}</small>
                     </div>
                     <small><strong>{show.type}</strong></small>
-                  <button key={i} className="delete" onClick={handleDelete}>Remove From Queue</button>
+                  <button key={i} value={show._id} className="delete" onClick={handleDelete}>Remove From Queue</button>
                 </div>
             </div>
       )
@@ -166,7 +171,7 @@ let friendList;
               <h3>Search for Friends</h3>
               <form onSubmit={handleSubmit}>
                 <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
-                <button type="submit" class="submit">Submit</button>
+                <button type="submit" className="submit">Submit</button>
               </form>
               <hr />
               <div className="friendList">
