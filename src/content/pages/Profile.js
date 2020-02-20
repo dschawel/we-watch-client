@@ -45,7 +45,7 @@ const Profile = props => {
                     />
                 </div>
                 <div className="movie-info">
-                    <h3>Movie Details</h3>
+                    {/* <h3>Movie Details</h3> */}
                     <div>
                         <h2>{show.title}</h2>
                         <small>Released Date: {show.year}</small>
@@ -102,11 +102,13 @@ const Profile = props => {
               {props.user.email}
             </p> */}
             <br />
+            <br />
+            <br />
             <div className="friends">
               <h3>Search for Friends</h3>
               <form onSubmit={handleSubmit}>
                 <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
-                <button type="submit">Submit</button>
+                <button type="submit" class="submit">Submit</button>
               </form>
             </div>
           </Col>

@@ -86,9 +86,9 @@ nav a:hover {
       0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: flex;
-  height: 40vh;
-  margin: 0 auto 50px;
-  width: 43vw;
+  height: 37vh;
+  margin: 0 auto 25px;
+  width: 37vw;
 }
 
 .image-container {
@@ -129,6 +129,10 @@ nav a:hover {
   margin: 20px 0 0;
 }
 
-/* .shows {
-  text-align: center;
-} */
+.submit {
+  background-color: #11409f;
+  color: white;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
