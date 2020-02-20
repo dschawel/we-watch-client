@@ -9,11 +9,10 @@ const Profile = props => {
   // let [search, setSearch] = useState('')
   let [friendName, setFriendName] = useState('')
   let [shows, setShows] = useState('')
-  let [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     fetchShows()
-  }, [shows])
+  }, [])
 
   const fetchShows = () => {
     let token = localStorage.getItem('userToken')
@@ -37,11 +36,8 @@ const Profile = props => {
   // Function to delete from your queue
   const handleDelete = e => {
     e.preventDefault()
-    shows.forEach(show => {
-      if (show._id === e.target.value) {
-        setShows(shows.splice(show, 1))
-      }
-    })
+    
+    setShows(shows.filter(show => show._id !== e.target.value))
     console.log(e.target.value)
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${e.target.value}`, {
@@ -53,7 +49,6 @@ const Profile = props => {
     })
     .then(response => {
       response.json().then(result => {
-        // setRedirect(true)
         console.log('Line 51', result)
       })
       .catch(err => {
