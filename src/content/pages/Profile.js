@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
+// import FriendList from '../components/friendList'
 
 const Profile = props => {
-
-  // Declare and initalize state
-  // let [serverMessage, setServerMessage] = useState('')
-  // let [search, setSearch] = useState('')
   let [friendName, setFriendName] = useState('')
   let [shows, setShows] = useState('')
+  let [friendArr, setFriendArr] = useState([])
 
   useEffect(() => {
     fetchShows()
+  }, [])
+
+  useEffect(() => {
+    getFriends(props)
   }, [])
 
   const fetchShows = async () => {
@@ -24,7 +26,6 @@ const Profile = props => {
     })
     .then(response => {
       response.json().then(result => {
-        console.log(result)
         setShows(result)
       })
       .catch(err => {
@@ -111,6 +112,42 @@ const Profile = props => {
     return <Redirect to="/" />
   }
 
+
+  const getFriends = (props) => {
+    console.log(props.user)
+    let token = localStorage.getItem('userToken')
+    fetch(`${process.env.REACT_APP_SERVER_URL}/friends/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      response.json()
+      .then(result => {
+        if(response.ok){
+          console.log(result.friends)
+          setFriendArr(result.friends)
+        }
+      })
+    })
+    
+  }
+
+let friendList;
+//if props.user.friends.length == friendsarr.length THEN MAP AND FORM DIVS
+
+// if(props.user.friends.length === friendArr.length){
+  friendList = friendArr.map((friend, i) => {
+    return(
+      <div key={i} className="friend">
+        <h4>{friend.firstname}</h4>
+      </div>
+    )
+  })
+  console.log('THIS IS THE LIST: ', friendList)
+  console.log('HEY! FRIENDARR', friendArr)
   return (
     <div className="profile">
       <Container>
@@ -131,6 +168,11 @@ const Profile = props => {
                 <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
                 <button type="submit" class="submit">Submit</button>
               </form>
+              <hr />
+              <div className="friendList">
+                <h2>My Friends</h2>
+                {friendList}
+              </div>
             </div>
           </Col>
         <Col xs="6">

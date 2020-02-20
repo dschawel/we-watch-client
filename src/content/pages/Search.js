@@ -36,13 +36,11 @@ const Search = () => {
     let list;
     if(movieList){
         list = movieList.map((movie, i) => {
-            console.log(i)
             const CARD_STYLE = {
                 'backgroundImage': 'url(' + movie.Poster + ')',
                 'backgroundSize': 'cover',
                 'backgroundPosition': 'center'
                 };
-            console.log(movie)
             return(
                 <div className='movie' key={i} style={CARD_STYLE}>
                     <p className='movieTitle'>{movie.Title}</p>
