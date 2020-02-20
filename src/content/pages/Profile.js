@@ -33,12 +33,15 @@ const Profile = props => {
     })
   }
 
+  // Function to delete from your queue
   const handleDelete = e => {
-    console.log(e)
+    // console.log('Line 38', e.target.value)
     e.preventDefault()
+    // showId = match.params.id
     let token = localStorage.getItem('userToken')
-    fetch(`${process.env.REACT_APP_SERVER_URL}/shows/:showId`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${e.target.value}`, {
       method: 'DELETE',
+      // body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -72,7 +75,7 @@ const Profile = props => {
                         <small>Released Date: {show.year}</small>
                     </div>
                     <small><strong>{show.type}</strong></small>
-                  <button key={i} className="delete" onClick={handleDelete}>Remove From Queue</button>
+                  <button key={i} value={show._id} className="delete" onClick={handleDelete}>Remove From Queue</button>
                 </div>
             </div>
       )
