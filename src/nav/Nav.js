@@ -26,7 +26,7 @@ const Nav = props => {
   if (props.user) {
     links = (
       <span>
-      <li>Hello {props.user.firstname}!</li>
+      {/* <li>Hello {props.user.firstname}!</li> */}
       <li>
         <Link to="/profile">Profile</Link>
       </li>

@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import Search from './pages/Search'
+
 // import Button from './pages/Button'
 
 const Content = props => {

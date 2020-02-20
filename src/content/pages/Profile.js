@@ -1,11 +1,63 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Container, Row, Col } from 'reactstrap';
 
 const Profile = props => {
+
   // Declare and initalize state
-  let [serverMessage, setServerMessage] = useState('')
-  let [search, setSearch] = useState('')
+  // let [serverMessage, setServerMessage] = useState('')
+  // let [search, setSearch] = useState('')
   let [friendName, setFriendName] = useState('')
+  let [shows, setShows] = useState('')
+
+  useEffect(() => {
+    fetchShows()
+  }, [])
+
+  const fetchShows = async () => {
+    let token = localStorage.getItem('userToken')
+    await fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      response.json().then(result => {
+        console.log(result)
+        setShows(result)
+      })
+      .catch(err => {
+        console.log('Error in pet fetch', err)
+      })
+    })
+  }
+
+  let content;
+  if (shows.length > 0) {
+    content = shows.map((show, i) => {
+      return (
+        <div className="movie-card-container">
+                <div className="image-container">
+                    <div
+                        className="bg-image"
+                        style={{ backgroundImage: `url(${show.poster})` }}
+                    />
+                </div>
+                <div className="movie-info">
+                    <h3>Movie Details</h3>
+                    <div>
+                        <h2>{show.title}</h2>
+                        <small>Released Date: {show.year}</small>
+                    </div>
+                    <h3>{show.type}</h3>
+                </div>
+            </div>
+      )
+    })
+  } else {
+    content = <p>No Shows Yet...</p>
+  }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -32,31 +84,40 @@ const Profile = props => {
       })
     }
 
-
-
   // If there is not a user, send them away
   if (!props.user) {
     return <Redirect to="/" />
   }
 
   return (
-    <div>
-      <h2>{props.user.firstname}'s Profile</h2>
-      <h3>{props.user.firstname} {props.user.lastname}</h3>
-      <img alt="profile" src={props.user.profileUrl} />
-      <p>
-        <strong>Email:</strong>
-        {props.user.email}
-      </p>
-      <h2>Search for Friends</h2>
-      <div className='friends'>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      {/* <button onClick={callServer}>Call /profile route on server</button>
-      <p>{serverMessage}</p> */}
+    <div className="profile">
+      <Container>
+        <Row>
+          <Col xs="6">
+            <h2>{props.user.firstname}'s Profile</h2>
+            {/* <h3>{props.user.firstname} {props.user.lastname}</h3> */}
+            <img alt="profile" src={props.user.profileUrl} />
+            {/* <p>
+              <strong>Email:</strong>
+              {props.user.email}
+            </p> */}
+            <br />
+            <div className="friends">
+              <h3>Search for Friends</h3>
+              <form onSubmit={handleSubmit}>
+                <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </Col>
+        <Col xs="6">
+          <div className="shows">
+            <h2>My Queue</h2>
+            {content}
+          </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
