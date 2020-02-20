@@ -77,7 +77,7 @@ const Search = () => {
             )
         })
     }
-
+    console.log(list)
     return (
         <div className="search">
             <h2>Search</h2>
