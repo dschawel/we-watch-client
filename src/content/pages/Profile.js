@@ -6,36 +6,6 @@ const Profile = props => {
   let [serverMessage, setServerMessage] = useState('')
   let [search, setSearch] = useState('')
   let [friendName, setFriendName] = useState('')
-  // const callServer = () => {
-  //   console.log(search)
-  //   let token = localStorage.getItem('userToken')
-  //   fetch(`${process.env.REACT_APP_SERVER_URL}/friends/search`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   })
-  //   .then(response => {
-  //     console.log('In the .then() code', response)
-  //     response.json().then(result => {
-  //       if (response.ok) {
-  //         console.log('YAY', result)
-  //         setServerMessage(result.message)
-  //       }
-  //       else {
-  //         console.log('Darn', result)
-  //         setServerMessage('No secret message for you')
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log('Error parson JSON')
-  //     })
-  //   })
-  //   .catch(err => {
-  //     console.log('Some sort of error', err)
-  //   })
-  // }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -49,16 +19,18 @@ const Profile = props => {
         'Authorization': `Bearer ${token}`
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        response.json()
         .then(result => {
-          console.log(result)
+          if(response.ok){
+            props.updateUser(result.token)
+          }
         })
+      })
       .catch(err => {
-        console.log('line 55 error', err)
+        console.log('line 32 error', err)
       })
     }
-  
-  
 
 
 

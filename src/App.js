@@ -31,8 +31,6 @@ const App = props => {
     if (newToken) {
       // Save the token 
       localStorage.setItem('userToken', newToken)
-
-      //update the user with the token's info
       decodeToken(newToken)
     }
     else {
