@@ -148,7 +148,7 @@ let friendList;
     //Package it all up into a div for later use
     return(
       <div key={i} className="friend">
-        <Link className="link" to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
+        <Link to={{pathname:`/friend/${friend._id}`, state: friend}}><h3 className="link">{friend.firstname}</h3></Link>
       </div>
     )
   })
