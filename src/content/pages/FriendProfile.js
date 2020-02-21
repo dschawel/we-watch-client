@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom'
 // import FriendList from '../components/friendList'
 
 const Profile = ({match},props) => {
+let [name, setName] = useState('')
 let [shows, setShows] = useState('')
 let { id } = useParams()
 // const { friendId } = match.params.id
@@ -22,7 +23,11 @@ const fetchShows = () => {
     })
     .then(response => {
     response.json().then(result => {
-        setShows(result)
+        console.log(result)
+        let name = result.friend.firstname + ' ' + result.friend.lastname
+        setShows(result.show)
+        setName(name)
+        
     })
     .catch(err => {
         console.log('Error in show fetch', err)
@@ -57,14 +62,13 @@ if (shows.length > 0) {
 } else {
     content = <p>No Shows Yet...</p>
 }
-console.log(props.component)
 // If there is not a user, send them away
 return (
     <div className="profile">
     <Container>
         <Row>
         <Col xs="6">
-            <h2>{id}'s Profile</h2>
+            <h2>{name}'s Profile</h2>
             {/* <h3>{props.user.firstname} {props.user.lastname}</h3> */}
             {/* <img alt="profile" src={props.user.profileUrl} /> */}
             {/* <p>
