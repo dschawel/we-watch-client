@@ -22,7 +22,7 @@ const App = props => {
 
   // Define any onload actions (e.g, to look for the token)
   useEffect(() => {
-    console.log('check for token!')
+    // console.log('check for token!')
     decodeToken()
   }, [])
 
@@ -42,19 +42,19 @@ const App = props => {
   const decodeToken = existingToken => {
     let token = existingToken || localStorage.getItem('userToken')
 
-    console.log('The token is:', token)
+    // console.log('The token is:', token)
     // Decode token
     if (token) {
       let decoded = jwtDecode(token)
 
       // If the token is not decoded or it is expired, NO USER!
       if (!decoded || Date.now() > decoded.exp * 1000) {
-        console.log('Expired or bad token?')
+        // console.log('Expired or bad token?')
         setUser(null)
       }
       else {
         // This is the user data - YAY
-        console.log('YAY! Good token!')
+        // console.log('YAY! Good token!')
         setUser(decoded)
       }
     }
