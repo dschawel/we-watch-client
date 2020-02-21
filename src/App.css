@@ -1,8 +1,8 @@
 .App {
   text-align: center;
   background-color: #010000;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
 }
 
 main {
@@ -187,3 +187,7 @@ label {
   width: 40em;
   margin: 0 auto;
 }
+
+/* .shows {
+  overflow-y: scroll;
+} */
