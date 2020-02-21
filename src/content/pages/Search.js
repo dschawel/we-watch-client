@@ -12,6 +12,7 @@ const Search = () => {
     const handleSubmit = e => {
         e.preventDefault()
         let token = localStorage.getItem('userToken')
+        // console.log(process.env.REACT_APP_SERVER_URL)
         fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${query}`, {
             method: 'GET',
             headers: {

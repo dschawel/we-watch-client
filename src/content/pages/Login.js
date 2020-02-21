@@ -24,11 +24,12 @@ const Login = props => {
         password
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
     .then(response => {
       console.log('Success')
+      console.log(response)
       response.json().then(result => {
         console.log('Response', response) // metadata, status, etc
         console.log('Result', result) // stuff in the send
