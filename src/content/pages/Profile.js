@@ -155,12 +155,7 @@ let friendList;
         <Row>
           <Col xs="6">
             <h2>{props.user.firstname}'s Profile</h2>
-            {/* <h3>{props.user.firstname} {props.user.lastname}</h3> */}
             <img alt="profile" src={props.user.profileUrl} />
-            {/* <p>
-              <strong>Email:</strong>
-              {props.user.email}
-            </p> */}
             <br />
             <hr />
             <div className="friends">
