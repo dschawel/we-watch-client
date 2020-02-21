@@ -151,8 +151,8 @@ label {
 }
 
 .submit {
-  background-color: #11409f;
-  color: white;
+  background-color: #f7efd8;
+  color: black;
   margin: 10px;
   border: 2px solid black;
   border-radius: 10px;
@@ -160,6 +160,10 @@ label {
 
 .profile h2, h3, p {
   color: #f7efd8;
+}
+
+.profile h4 {
+  color: black;
 }
 
 .link {

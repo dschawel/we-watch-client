@@ -73,7 +73,7 @@ const Profile = props => {
                 <div className="movie-info">
                     {/* <h3>Movie Details</h3> */}
                     <div>
-                        <h3>{show.title}</h3>
+                        <h4>{show.title}</h4>
                         <small>Released Date: {show.year}</small>
                     </div>
                     <small><strong>{show.type}</strong></small>
