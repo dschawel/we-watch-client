@@ -7,8 +7,9 @@ const Search = () => {
     let [query, setQuery] = useState('')
     let [movieList, setMovieList] = useState([])
     let [movieArr, setMovieArr] = useState([])
+    let [serverMessage, setServerMessage] = useState('')
 
-    console.log(query)
+//Button for searching for a movie / tv show!
     const handleSubmit = e => {
         e.preventDefault()
         let token = localStorage.getItem('userToken')
@@ -22,15 +23,13 @@ const Search = () => {
             .then(response => response.json())
                 .then(result => {
                     // Reset the state
-                    console.log('I am the result:', result.Search)
+                    setQuery('')
+                    // This populates a list of 10 movies from the OMDB api
                     setMovieList(result.Search)
-                    
-                    console.log('I am the list:', movieList)
                 })
                 .catch(err => {
-                    console.log('Error Getting', err)
+                    setServerMessage('Error fetching movies!')
                 })
-        console.log('List:', movieList)
     }
 
     let list;
@@ -47,6 +46,7 @@ const Search = () => {
                     <p>{movie.Year}</p>
                     <button type="submit" name={i} onClick={(e)=>{
                         e.preventDefault()
+                        //Sets the movie currently 
                         setMovieArr(movieList[e.currentTarget.name])
                         let token = localStorage.getItem('userToken')
                         let data = {
@@ -65,7 +65,7 @@ const Search = () => {
                             })
                             .then(response => response.json())
                             .then(result => {
-                                console.log('Posting show to user!', result)
+                                setServerMessage(result.message)
                             })
                         .catch(err => {
                             console.log('line 73, MUCH LESS! error', err)
@@ -96,6 +96,7 @@ const Search = () => {
                     </ReactCardCarousel>
                 </div>
             </div>
+            <p>{serverMessage}</p>
         </div>
     )
 }
