@@ -6,6 +6,7 @@ const Profile = props => {
   let [friendName, setFriendName] = useState('')
   let [shows, setShows] = useState('')
   let [friendArr, setFriendArr] = useState([])
+  let [serverMessage, setServerMessage] = useState('')
 
   useEffect(() => {
     fetchShows()
@@ -15,7 +16,7 @@ const Profile = props => {
     getFriends(props)
   }, [])
 
-
+//Checks the database for all your own shows, packs them into a front-end array for display.
   const fetchShows = () => {
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {
@@ -39,7 +40,6 @@ const Profile = props => {
     e.preventDefault()
     
     setShows(shows.filter(show => show._id !== e.target.value))
-    console.log(e.target.value)
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${e.target.value}`, {
       method: 'DELETE',
@@ -86,10 +86,12 @@ const Profile = props => {
     content = <p>No Shows Yet...</p>
   }
 
+//Here is the friend search function
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(friendName)
     let token = localStorage.getItem('userToken')
+    //Runs a fetch toward the back-end, and sends the friend name that way, where it gets shaped
+    //for the DB to interpret it. In retrospect, this should have just been a 'search by email'.
     fetch(`${process.env.REACT_APP_SERVER_URL}/friends/search`, {
       method: 'POST',
       body: JSON.stringify({friendName}),
@@ -106,8 +108,8 @@ const Profile = props => {
           }
         })
       })
-      .catch(err => {
-        console.log('Error on search submittal', err)
+      .catch(result => {
+        setServerMessage(result.message)
       })
     }
 
@@ -116,8 +118,9 @@ const Profile = props => {
     return <Redirect to="/" />
   }
 
+//Get friends taps the DB and finds all friends associated with your user
   const getFriends = (props) => {
-    console.log(props.user)
+    //This is us grabbing the token from storage for use here
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/friends/`, {
       method: 'GET',
@@ -130,7 +133,7 @@ const Profile = props => {
       response.json()
       .then(result => {
         if(response.ok){
-          console.log(result.friends)
+          //Setting the friendArr for us to repackage under the map function to feed it as a div
           setFriendArr(result.friends)
         }
       })
@@ -138,11 +141,11 @@ const Profile = props => {
     
   }
 
+// Declare friendlist as a global for later use
 let friendList;
-//if props.user.friends.length == friendsarr.length THEN MAP AND FORM DIVS
-
-// if(props.user.friends.length === friendArr.length){
+//Define friendlist as a new array that matches the friend array, pair up with an index
   friendList = friendArr.map((friend, i) => {
+    //Package it all up into a div for later use
     return(
       <div key={i} className="friend">
         <Link className="link" to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
@@ -164,6 +167,7 @@ let friendList;
                 <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
                 <button type="submit" className="submit">Submit</button>
               </form>
+              <p>{serverMessage}</p>
               <hr />
               <div className="friendList">
                 <h2>My Friends</h2>
