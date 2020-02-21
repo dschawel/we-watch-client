@@ -158,8 +158,8 @@ label {
   border-radius: 10px;
 }
 
-.profile h2, h3 {
-  color: #c63434;
+.profile h2, h3, p {
+  color: #f7efd8;
 }
 
 .link {

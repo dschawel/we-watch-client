@@ -1,6 +1,6 @@
-## MERN Auth Boilerplate (Client-side)
-
-The master branch contains starter code. See solution branch for working version.
+## We-Watch
+https://we-watch2.herokuapp.com/
+We-Watch is an app designed to let friends share what they are watching.  Every time I'm at a dinner party
 
 ### Get Started
 
