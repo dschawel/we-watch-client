@@ -53,6 +53,11 @@ As a user I can:
     - February 21st 2020
     Presented final app
 
+## Haiku
+Movies, react, work.
+Friends list, import, db link
+Failed to compile.
+
 ### Get Started
 For local development
 1. Fork and clone
