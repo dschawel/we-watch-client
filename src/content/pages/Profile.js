@@ -90,6 +90,8 @@ const Profile = props => {
   const handleSubmit = e => {
     e.preventDefault()
     let token = localStorage.getItem('userToken')
+    //Runs a fetch toward the back-end, and sends the friend name that way, where it gets shaped
+    //for the DB to interpret it. In retrospect, this should have just been a 'search by email'.
     fetch(`${process.env.REACT_APP_SERVER_URL}/friends/search`, {
       method: 'POST',
       body: JSON.stringify({friendName}),
@@ -106,9 +108,8 @@ const Profile = props => {
           }
         })
       })
-      .catch(err => {
-        console.log('Error on search submittal', err)
-        setServerMessage(`Couldn't find your friend! Maybe check your spelling?`)
+      .catch(result => {
+        setServerMessage(result.message)
       })
     }
 
@@ -117,10 +118,7 @@ const Profile = props => {
     return <Redirect to="/" />
   }
 
-<<<<<<< HEAD
 //Get friends taps the DB and finds all friends associated with your user
-=======
->>>>>>> b1e692b9495b15b4ff64ea9cb78b4e0ecf9f0bbd
   const getFriends = (props) => {
     //This is us grabbing the token from storage for use here
     let token = localStorage.getItem('userToken')
