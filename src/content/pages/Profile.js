@@ -116,7 +116,6 @@ const Profile = props => {
     return <Redirect to="/" />
   }
 
-
   const getFriends = (props) => {
     console.log(props.user)
     let token = localStorage.getItem('userToken')
@@ -146,7 +145,7 @@ let friendList;
   friendList = friendArr.map((friend, i) => {
     return(
       <div key={i} className="friend">
-        <Link to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
+        <Link className="link" to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
       </div>
     )
   })

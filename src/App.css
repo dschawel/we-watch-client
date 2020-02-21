@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #010000;
 }
 
 main {
@@ -7,18 +8,19 @@ main {
 }
 
 footer {
-  background-color: #282c34;
+  background-color: #010000;
   bottom: 0;
   position: fixed;
   width: 100vw;
-  color: white;
+  color: #c63434;
   font-size: 16px;
+  font-weight: 700;
   padding: 15px;
 }
 
 nav {
-  background-color: #282c34;
-  padding: 2px;
+  background-color: #010000;
+  line-height: 2.5em;
 }
 
 nav ul {
@@ -35,11 +37,20 @@ nav a,
 nav a:visited {
   text-decoration: none;
   font-size: 22px;
-  color: mediumspringgreen;
+  font-weight: 700;
+  color: #c63434;
 }
 
 nav a:hover {
-  color: hotpink;
+  color: #580f0c;
+}
+
+h1, h4, h5, label {
+  color: #f7efd8;
+}
+
+label {
+  padding-right: 10px;
 }
 
 .red {
@@ -47,9 +58,17 @@ nav a:hover {
 }
 
 .logo {
-  margin: 0 auto;
+  padding-right: 319px;  
+  color: #c63434;
+  height: 100vh;
+  width: 100vw;
 }
 
+.search {
+  padding-right: 319px;
+  height: 100vh;
+  width: 100vw;
+}
 .movie{
   height: 50vh;
   width: 20vw;
@@ -86,9 +105,9 @@ nav a:hover {
       0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: flex;
-  height: 37vh;
+  height: 35.5vh;
   margin: 0 auto 25px;
-  width: 37vw;
+  width: 36vw;
 }
 
 .image-container {
@@ -137,7 +156,28 @@ nav a:hover {
   border-radius: 10px;
 }
 
-/* .delete {
-  bottom: 0;
-  position: fixed;
-} */
+.profile h2, h3 {
+  color: #c63434;
+}
+
+.link {
+  color: #c63434;
+}
+
+.login {
+  color: #c63434;
+  height: 100vh;
+  width: 100vw;
+  padding: 30px;
+  width: 40em;
+  margin: 0 auto;
+}
+
+.signup {
+  color: #c63434;
+  height: 100vh;
+  width: 100vw;
+  padding: 30px;
+  width: 40em;
+  margin: 0 auto;
+}
