@@ -1,6 +1,8 @@
 // Packages
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 const Login = props => {
   // Declare and initialize state variables
@@ -24,11 +26,12 @@ const Login = props => {
         password
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
     .then(response => {
       console.log('Success')
+      console.log(response)
       response.json().then(result => {
         console.log('Response', response) // metadata, status, etc
         console.log('Result', result) // stuff in the send
@@ -53,20 +56,20 @@ const Login = props => {
   }
 
   return (
-    <div>
+    <div className="login">
       <h2>Login</h2>
       <span className="red">{message}</span>
-      <form onSubmit={handleSubmit}>
-          <div>
-            <label>Email:</label>
-            <input type="email" name="email" onChange={e => setEmail(e.target.value)} />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
-          </div>
-          <button type="submit">Sign In!</button>
-        </form>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+            <Label>Email:</Label>
+            <Input type="email" name="email" onChange={e => setEmail(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+            <Label>Password:</Label>
+            <Input type="password" name="password" onChange={e => setPassword(e.target.value)} />
+        </FormGroup>
+          <Button color="danger" type="submit">Log In!</Button>
+        </Form>
     </div>
   )
 }

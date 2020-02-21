@@ -1,6 +1,8 @@
 // Packages
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 const Signup = props => {
   // Declare and initialize state variables
@@ -62,32 +64,32 @@ const Signup = props => {
   }
 
   return (
-    <div>
+    <div className="signup">
       <h2>Signup</h2>
       <span className="red">{message}</span>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>First Name:</label>
-          <input name="firstname" placeholder="Your first name" onChange={e => setFirstname(e.target.value)} />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input name="lastname" placeholder="Your last name" onChange={e => setLastname(e.target.value)} />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" name="email" onChange={e => setEmail(e.target.value)} />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
-        </div>
-        <div>
-          <label>Profile Pic URL:</label>
-          <input type="url" name="profileUrl" onChange={e => setProfileUrl(e.target.value)} />
-        </div>
-        <button type="submit">Sign Me Up!</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label>First Name:</Label>
+          <Input name="firstname" placeholder="First name" onChange={e => setFirstname(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>Last Name:</Label>
+          <Input name="lastname" placeholder="Last name" onChange={e => setLastname(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>Email:</Label>
+          <Input type="email" name="email" placeholder="email" onChange={e => setEmail(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>Password:</Label>
+          <Input type="password" name="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>Profile Pic URL:</Label>
+          <Input type="url" name="profileUrl" placeholder="picture link" onChange={e => setProfileUrl(e.target.value)} />
+        </FormGroup>
+        <Button color="danger" type="submit">Sign Me Up!</Button>
+      </Form>
     </div>
   )
 }

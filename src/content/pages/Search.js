@@ -13,6 +13,7 @@ const Search = () => {
     const handleSubmit = e => {
         e.preventDefault()
         let token = localStorage.getItem('userToken')
+        // console.log(process.env.REACT_APP_SERVER_URL)
         fetch(`${process.env.REACT_APP_SERVER_URL}/shows/${query}`, {
             method: 'GET',
             headers: {
@@ -79,7 +80,7 @@ const Search = () => {
     console.log(list)
     return (
         <div className="search">
-            <h2>Search</h2>
+            <h1>Search</h1>
             <form onSubmit={handleSubmit} >
                 <div>
                     <label>Show: </label>

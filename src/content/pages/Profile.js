@@ -117,7 +117,10 @@ const Profile = props => {
     return <Redirect to="/" />
   }
 
+<<<<<<< HEAD
 //Get friends taps the DB and finds all friends associated with your user
+=======
+>>>>>>> b1e692b9495b15b4ff64ea9cb78b4e0ecf9f0bbd
   const getFriends = (props) => {
     //This is us grabbing the token from storage for use here
     let token = localStorage.getItem('userToken')
@@ -147,7 +150,7 @@ let friendList;
     //Package it all up into a div for later use
     return(
       <div key={i} className="friend">
-        <Link to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
+        <Link className="link" to={{pathname:`/friend/${friend._id}`, state: friend}}><h4>{friend.firstname}</h4></Link>
       </div>
     )
   })
