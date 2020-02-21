@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import {useParams} from 'react-router-dom'
 // import FriendList from '../components/friendList'
 
-const Profile = ({match},props) => {
+const Profile = (props) => {
 let [name, setName] = useState('')
 let [shows, setShows] = useState('')
 let { id } = useParams()
@@ -14,6 +14,8 @@ useEffect(() => {
 }, [])
 
 const fetchShows = () => {
+    //This entire page hinges on this function, it actually fetches all the "friend" data off their ID
+    //And posts it here. This is actually likely a security fault, and is a planned change for the future.
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/friends/${id}`, {
     headers: {
@@ -23,8 +25,11 @@ const fetchShows = () => {
     })
     .then(response => {
     response.json().then(result => {
-        console.log(result)
+        //This can be changed, but I wanted to display a full name out of principle here.
+        //Mostly because I made funny full names in my local database.
         let name = result.friend.firstname + ' ' + result.friend.lastname
+        //Populates the friend's movies onto their page, as well as their name.
+        //It looks simple, but this took a bit!
         setShows(result.show)
         setName(name)
         
@@ -62,19 +67,12 @@ if (shows.length > 0) {
 } else {
     content = <p>No Shows Yet...</p>
 }
-// If there is not a user, send them away
 return (
     <div className="profile">
     <Container>
         <Row>
         <Col xs="6">
             <h2>{name}'s Profile</h2>
-            {/* <h3>{props.user.firstname} {props.user.lastname}</h3> */}
-            {/* <img alt="profile" src={props.user.profileUrl} /> */}
-            {/* <p>
-            <strong>Email:</strong>
-            {props.user.email}
-            </p> */}
             <br />
             <hr />
         </Col>

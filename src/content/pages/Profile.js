@@ -16,7 +16,7 @@ const Profile = props => {
     getFriends(props)
   }, [])
 
-
+//Checks the database for all your own shows, packs them into a front-end array for display.
   const fetchShows = () => {
     let token = localStorage.getItem('userToken')
     fetch(`${process.env.REACT_APP_SERVER_URL}/shows`, {

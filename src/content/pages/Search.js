@@ -36,6 +36,8 @@ const Search = () => {
     let list;
     if(movieList){
         list = movieList.map((movie, i) => {
+            //This is just local styling for the cards so that we can assign the movie poster
+            //as the background and format it correctly.
             const CARD_STYLE = {
                 'backgroundImage': 'url(' + movie.Poster + ')',
                 'backgroundSize': 'cover',
@@ -47,7 +49,8 @@ const Search = () => {
                     <p>{movie.Year}</p>
                     <button type="submit" name={i} onClick={(e)=>{
                         e.preventDefault()
-                        //Sets the movie currently 
+                        //Takes the movie that you click, plugs it into a local variable for later use
+                        //... Okay on second thought line 54 is likely redundant.
                         setMovieArr(movieList[e.currentTarget.name])
                         let token = localStorage.getItem('userToken')
                         let data = {
@@ -69,7 +72,7 @@ const Search = () => {
                                 setServerMessage(result.message)
                             })
                         .catch(err => {
-                            console.log('line 73, MUCH LESS! error', err)
+                            setServerMessage('Error fetching movies.')
                         })
                     }}>Add to Queue</button>
                     
