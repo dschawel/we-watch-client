@@ -1,23 +1,13 @@
 .App {
   text-align: center;
   background-color: #010000;
-  /* height: 100vh;
-  width: 100vw; */
 }
 
 main {
-  padding: 50px 0;
-}
-
-footer {
-  background-color: #010000;
-  bottom: 0;
-  position: fixed;
-  width: 100vw;
-  color: #c63434;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 15px;
+  
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 50px;
 }
 
 nav {
@@ -31,14 +21,13 @@ nav ul {
 
 nav li {
   display: inline;
-  color: white;
-  margin-right: 25px;
+  margin-right: 2em;
 }
 
 nav a,
 nav a:visited {
   text-decoration: none;
-  font-size: 22px;
+  font-size: 1.5em;
   font-weight: 700;
   color: #c63434;
 }
@@ -60,17 +49,9 @@ label {
 }
 
 .logo {
-  padding-right: 319px;  
   color: #c63434;
-  height: 100vh;
-  width: 100vw;
 }
 
-.search {
-  padding-right: 319px;
-  height: 100vh;
-  width: 100vw;
-}
 .movie{
   height: 50vh;
   width: 20vw;
@@ -173,8 +154,8 @@ label {
 
 .login {
   color: #c63434;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   padding: 30px;
   width: 40em;
   margin: 0 auto;
@@ -182,13 +163,22 @@ label {
 
 .signup {
   color: #c63434;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   padding: 30px;
   width: 40em;
   margin: 0 auto;
 }
 
-/* .shows {
-  overflow-y: scroll;
-} */
+footer {
+  background-color: #010000;
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  color: #c63434;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px;
+}
+
+
