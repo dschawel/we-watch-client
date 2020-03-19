@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ReactCardCarousel from 'react-card-carousel';
-// import Button from '../pages/Button'
 
 const Search = () => {
   // Declare and initialize state variables

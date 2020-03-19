@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Nav = props => {
+
+const NavigationBar = props => {
   const handleLogout = e => {
     e.preventDefault()
     // Remove the token from localstorage (or cookies)
@@ -51,4 +52,4 @@ const Nav = props => {
   )
 }
 
-export default Nav
+export default NavigationBar

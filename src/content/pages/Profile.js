@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
+import Image from 'react-bootstrap/Image'
 
 const Profile = props => {
   let [friendName, setFriendName] = useState('')
@@ -158,13 +159,14 @@ let friendList;
         <Row>
           <Col xs="6">
             <h2>{props.user.firstname}'s Profile</h2>
-            <img alt="profile" src={props.user.profileUrl} />
+            <Image alt="profile" src={props.user.profileUrl} fluid/>
             <br />
             <hr />
             <div className="friends">
               <h3>Search for Friends</h3>
               <form onSubmit={handleSubmit}>
                 <input type="text" name="friendName" placeholder="search for friends" onChange={e => setFriendName(e.target.value)} />
+                <br />
                 <button type="submit" className="submit">Submit</button>
               </form>
               <p>{serverMessage}</p>
