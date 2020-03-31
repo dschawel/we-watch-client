@@ -5,7 +5,7 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { Button } from 'reactstrap';
 
 const Login = props => {
-  // Declare and initialize state variables
+  // Declare & initialize state variables
   let [email, setEmail] = useState('')
   let [message, setMessage] = useState('')
   let [password, setPassword] = useState('')
