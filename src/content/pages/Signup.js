@@ -35,6 +35,7 @@ const Signup = props => {
     console.log(process.env.REACT_APP_SERVER_URL)
     fetch(`${process.env.REACT_APP_SERVER_URL}/auth/signup`, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'

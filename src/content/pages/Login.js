@@ -21,6 +21,7 @@ const Login = props => {
     // Fetch call to POST data
     fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify({
         email,
         password
