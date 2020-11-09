@@ -19,8 +19,9 @@ const Login = props => {
   const handleSubmit = e => {
     e.preventDefault()
     // Fetch call to POST data
-    var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    fetch(`${proxyUrl}${process.env.REACT_APP_SERVER_URL}/auth/login`, {
+    // var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
+      mode: 'cors',
       method: 'POST',
       body: JSON.stringify({
         email,
